@@ -1,1 +1,0 @@
-ls -ltU | awk 'NR > 1 {if ($1 ~ /^d/) printf $NF "/,"; else printf $NF ","}'
