@@ -26,6 +26,16 @@ class Game:
                     return False
         return True
 
+    def find_min_cubes(self):
+        cubes_template = {"red": 0, "green": 0, "blue": 0}
+        power = 1;
+        for cube_set in self.cubes:
+            for key, value in cube_set.items():
+                if cubes_template[key] < value:
+                    cubes_template[key] = value
+        power = cubes_template["red"] * cubes_template["green"] * cubes_template["blue"]
+        return power
+
 
 cubes_ref = {"red": 12, "green": 13, "blue": 14}
 
@@ -44,8 +54,7 @@ def main():
     games_list = extract_from_file()
     sum = 0
     for game in games_list:
-        if game.is_possible(cubes_ref):
-            sum = sum + game.index
+        sum = sum + game.find_min_cubes()
     print(sum)
 
 

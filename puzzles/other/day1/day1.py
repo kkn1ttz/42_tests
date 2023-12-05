@@ -4,9 +4,7 @@ def find_start_finish_number(line):
     i = 0
     
     for char in line:
-
-        # Now you can compare or perform operations based on ASCII values
-        if (char >= '0' and char <= '9'):  # ASCII value of 'A'
+        if (char >= '0' and char <= '9'):
             if i == 0:
                 first_char = char
                 second_char = char
@@ -22,7 +20,6 @@ def loop_file():
     file_path = 'day1\callibration_document'
     sum = 0
     with open(file_path, 'r') as file:
-        # Read the file line by line
         for line in file:
             sum = sum + find_start_finish_number(line)
         print('\n')

@@ -3,7 +3,6 @@ class Digit:
         self.start_index = start_index
         self.value = value
     
-        
 
 digits_dict = {
     "one": '1',
@@ -20,8 +19,7 @@ digits_dict = {
 
 def find_start_finish_number(line, digit_list):
     for index, char in enumerate(line):
-        # Now you can compare or perform operations based on ASCII values
-        if (char >= '0' and char <= '9'):  # ASCII value of 'A'
+        if (char >= '0' and char <= '9'):
             digit = Digit(start_index=index, value=char)
             digit_list.append(digit)
     return digit_list
@@ -59,7 +57,6 @@ def loop_file():
     file_path = 'day1\callibration_document'
     sum = 0
     with open(file_path, 'r') as file:
-        # Read the file line by line
         for line in file:
             sum = sum + make_int(digit_list=extract_all_digits(line))
         print('\n')
