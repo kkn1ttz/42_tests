@@ -7,10 +7,13 @@ class Number:
 
     def __str__(self):
         return f"{self.value}"
+    
+    @classmethod
+    def list_str(cls, number_list):
+        return "[" + ", ".join(str(number) for number in number_list) + "]"
 
     def scan_adjacent_elements(self, matrix):
         row = self.start_row
-        col = self.start_col
 
         offsets = [
             (-1, -1), (-1, 0), (-1, 1),
@@ -18,8 +21,7 @@ class Number:
             (1, -1), (1, 0),  (1, 1)
         ]
 
-        i = 0
-        while i < self.length:
+        for col in range(self.start_col, self.start_col + self.length):
             for offset_row, offset_col in offsets:
                 new_row, new_col = row + offset_row, col + offset_col
                 try:
@@ -27,8 +29,6 @@ class Number:
                         return (self.value)
                 except IndexError:
                     pass
-            col += 1
-            i += 1
 
         return (0)
 
@@ -37,7 +37,7 @@ def find_numbers(line, row):
     numbers = []
     i = 0
     while i < len(line):
-        if is_number(line[i]):
+        if str.isdecimal(line[i]):
             value = []
             start_col = i
             length = 0
@@ -64,10 +64,10 @@ def extract_from_file():
         for row, line in enumerate(file):
             line = line.rstrip()
             numbers += find_numbers(line, row)
-            for c in line:
-                str_line.append(c)
-            engine_schematic.append(str_line)
-            str_line = []
+            # for number in numbers:
+            #     print(number)
+            print()
+            engine_schematic.append(line)
     return ([engine_schematic, numbers])
 
 
@@ -82,13 +82,12 @@ def is_number(char):
 
 
 def main():
-    matrix = extract_from_file()[0]
+    matrix, numbers = extract_from_file()
     for row in matrix:
         print(row)
     print()
 
     sum = 0
-    numbers = extract_from_file()[1]
     for n in numbers:
         sum += n.scan_adjacent_elements(matrix)
         # n.scan_adjacent_elements(matrix)
