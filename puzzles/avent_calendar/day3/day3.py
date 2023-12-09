@@ -84,7 +84,9 @@ def is_number(char):
 def main():
     matrix, numbers = extract_from_file()
     for row in matrix:
-        print(row)
+        for c in row:
+            print(f"[{c}]", end = "")
+        print()
     print()
 
     sum = 0
