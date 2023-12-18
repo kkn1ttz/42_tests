@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zzahirho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 13:18:24 by zzahirho          #+#    #+#             */
-/*   Updated: 2023/12/07 13:20:25 by zzahirho         ###   ########.fr       */
+/*   Created: 2023/12/18 15:19:55 by zzahirho          #+#    #+#             */
+/*   Updated: 2023/12/18 15:20:19 by zzahirho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_alpha(char *str)
+int	ft_strlen(char *str)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] < 'A' || str[i] > 'z')
-		{
-			if (str[i] > 'Z' || str[i] < 'a')
-			{
-				return (0);
-			}
-		}
-		i++;
-	}
-	return (1);
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
-/*
-#include <stdio.h>
-#include <stdlib.h>
-
-int	main(int argc, char **argv)
-{
-	printf("%i\n", ft_str_is_alpha(argv[1]));
-}
-*/

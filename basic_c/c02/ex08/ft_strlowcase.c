@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
+/*   ft_strlowcase.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zzahirho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 13:18:24 by zzahirho          #+#    #+#             */
-/*   Updated: 2023/12/07 13:20:25 by zzahirho         ###   ########.fr       */
+/*   Created: 2023/12/07 15:25:20 by zzahirho          #+#    #+#             */
+/*   Updated: 2023/12/07 15:27:55 by zzahirho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_alpha(char *str)
+char	*ft_strlowcase(char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] < 'A' || str[i] > 'z')
-		{
-			if (str[i] > 'Z' || str[i] < 'a')
-			{
-				return (0);
-			}
-		}
+		if (str[i] >= 'A' && str[i] <= 'Z')
+			str[i] = str[i] + 6 + 26;
 		i++;
 	}
-	return (1);
+	return (str);
 }
-/*
-#include <stdio.h>
-#include <stdlib.h>
-
-int	main(int argc, char **argv)
-{
-	printf("%i\n", ft_str_is_alpha(argv[1]));
-}
-*/

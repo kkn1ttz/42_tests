@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zzahirho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 13:18:24 by zzahirho          #+#    #+#             */
-/*   Updated: 2023/12/07 13:20:25 by zzahirho         ###   ########.fr       */
+/*   Created: 2023/12/18 15:29:15 by zzahirho          #+#    #+#             */
+/*   Updated: 2023/12/18 15:29:16 by zzahirho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_alpha(char *str)
-{
-	int	i;
+#include <unistd.h>
 
-	i = 0;
-	while (str[i] != '\0')
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putnbr(int nb)
+{
+	if (nb == -2147483648)
 	{
-		if (str[i] < 'A' || str[i] > 'z')
-		{
-			if (str[i] > 'Z' || str[i] < 'a')
-			{
-				return (0);
-			}
-		}
-		i++;
+		ft_putchar('-');
+		ft_putchar('2');
+		ft_putnbr(147483648);
 	}
-	return (1);
+	else if (nb < 0)
+	{
+		ft_putchar('-');
+		ft_putnbr(-nb);
+	}
+	else if (nb > 9)
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
+	}
+	else
+	{
+		ft_putchar(nb + 48);
+	}
 }
-/*
-#include <stdio.h>
-#include <stdlib.h>
-
-int	main(int argc, char **argv)
-{
-	printf("%i\n", ft_str_is_alpha(argv[1]));
-}
-*/

@@ -1,39 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zzahirho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 13:18:24 by zzahirho          #+#    #+#             */
-/*   Updated: 2023/12/07 13:20:25 by zzahirho         ###   ########.fr       */
+/*   Created: 2023/12/18 15:51:47 by zzahirho          #+#    #+#             */
+/*   Updated: 2023/12/18 15:58:53 by zzahirho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_alpha(char *str)
+int	ft_isspace(char c)
 {
-	int	i;
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (1);
+	return (0);
+}
 
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] < 'A' || str[i] > 'z')
-		{
-			if (str[i] > 'Z' || str[i] < 'a')
-			{
-				return (0);
-			}
-		}
-		i++;
-	}
+int	is_numeric(char c)
+{
+	if (c < '0' || c > '9')
+		return (0);
 	return (1);
 }
-/*
-#include <stdio.h>
-#include <stdlib.h>
 
-int	main(int argc, char **argv)
+int	ft_atoi(char *str)
 {
-	printf("%i\n", ft_str_is_alpha(argv[1]));
+	int	i;
+	int	sign;
+	int	nb;
+
+	i = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	sign = 1;
+	while (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = sign * -1;
+		i++;
+	}
+	while (is_numeric(str[i]))
+	{
+		nb = nb * 10 + str[i] - '0';
+		i++;
+	}
+	return (nb * sign);
 }
-*/
